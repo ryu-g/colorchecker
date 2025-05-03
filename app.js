@@ -49,7 +49,7 @@ function mergeSimilarColors(colorMap, threshold = 32) {
     };
   });
 }
-function getDominantColors(image, count = 5, minPercent = 0.5) {
+function getDominantColors(image, count = 10, minPercent = 0.5) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = image.width;
