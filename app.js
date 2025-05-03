@@ -49,8 +49,7 @@ function mergeSimilarColors(colorMap, threshold = 32) {
     };
   });
 }
-
-function getDominantColors(image, count = 10) {
+function getDominantColors(image, count = 5, minPercent = 0.5) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = image.width;
@@ -59,10 +58,15 @@ function getDominantColors(image, count = 10) {
   const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
   const colorCount = {};
+  let totalPixels = 0;
+
   for (let i = 0; i < data.length; i += 4) {
-    const r = data[i], g = data[i+1], b = data[i+2];
+    const r = data[i], g = data[i + 1], b = data[i + 2], a = data[i + 3];
+    if (a === 0) continue; // 完全透明は無視
+
     const key = `${r},${g},${b}`;
     colorCount[key] = (colorCount[key] || 0) + 1;
+    totalPixels++;
   }
 
   const mergedColors = mergeSimilarColors(colorCount);
@@ -70,11 +74,16 @@ function getDominantColors(image, count = 10) {
 
   return mergedColors
     .sort((a, b) => b.count - a.count)
-    .slice(0, count)
-    .map(c => ({
-      color: c.color,
-      percent: ((c.count / total) * 100).toFixed(1)
-    }));
+    .map(c => {
+      const percent = (c.count / total) * 100;
+      return {
+        color: c.color,
+        percent: percent.toFixed(1),
+        rawPercent: percent
+      };
+    })
+    .filter(c => c.rawPercent >= minPercent)
+    .slice(0, count);
 }
 
 document.getElementById('dropZone').addEventListener('dragover', e => {
