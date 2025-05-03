@@ -1,0 +1,50 @@
+body {
+  font-family: sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+.drop-zone {
+  border: 2px dashed #ccc;
+  padding: 30px;
+  text-align: center;
+  background: #fff;
+  margin-bottom: 20px;
+}
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.image-box {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 300px;
+}
+canvas {
+  max-width: 100%;
+}
+.bar {
+  display: flex;
+  height: 20px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bar-segment {
+  height: 100%;
+}
+
+.filename{
+  font-weight: 700;
+  color: #ed8932;
+}
+
+.color_name{
+  font-family: 'Courier New', Courier, monospace;
+  color: #444;
+}
