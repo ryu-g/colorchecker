@@ -3,6 +3,9 @@ h1{
   font-weight: 900;
   color: #fcfcfc;
 }
+small{
+  color: #606060;
+}
 body {
   font-family: sans-serif;
   background: #606060;
