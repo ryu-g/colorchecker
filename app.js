@@ -115,6 +115,7 @@ document.getElementById('dropZone').addEventListener('drop', e => {
         // container.className = 'image-box';
         const barHTML = colors.map(c => `<div class="bar-segment" style="width:${c.percent}%;background:${c.color}" title="${c.color} (${c.percent}%)"></div>`).join('');
         container.innerHTML = `
+          <small>${file.name}</small>
           <img src="${img.src}" width="100%" /><br />
           ${colors.map(c => `<div style="display:flex;align-items:center;margin:4px 0">
             <div style="width:20px;height:20px;background:${c.color};margin-right:8px"></div>
